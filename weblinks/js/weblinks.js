@@ -53,6 +53,7 @@ function createLinkElement(link) {
 
 var content = document.getElementById("content");
 var printMyForm = document.getElementById("printMyForm");
+printMyForm.style.marginBottom = "15px";
 var printNewLink = document.getElementById("printNewLink");
 
 var addButton = document.createElement("button");
@@ -64,34 +65,36 @@ addButton.onclick = function addNewLink(){
 printMyForm.appendChild(addButton);
 
 
-yourName = document.createElement("INPUT");
+var yourName = document.createElement("INPUT");
 yourName.placeholder = "Your name";
 yourName.name = "name";
 yourName.id = "new_author";
 yourName.required = "required";
 
-linkTitle = document.createElement("INPUT");
+var linkTitle = document.createElement("INPUT");
 linkTitle.placeholder = "Link title";
 linkTitle.name = "link";
 linkTitle.id = "new_link";
 linkTitle.required = "required";
 
-linkUrl = document.createElement("INPUT");
+var linkUrl = document.createElement("INPUT");
 linkUrl.placeholder = "Link URL";
 linkUrl.name = "url";
 linkUrl.id = "new_url";
 linkUrl.required = "required";
 
-addLink = document.createElement("INPUT");
+var addLink = document.createElement("INPUT");
 addLink.setAttribute("type", "submit");
 addLink.value = "add link";
 addLink.onclick = function saveLink(){
+    if(!/^https?:\/\//i.test(document.getElementById("new_url").value)){
+        document.getElementById("new_url").value = 'http://' + document.getElementById("new_url").value;
+    }
     linkList.unshift({"title" : document.getElementById("new_link").value, "url" : document.getElementById("new_url").value, "author" : document.getElementById("new_author").value});
 };
 
 
 var myForm = document.createElement("form");
-printMyForm.style.marginBottom = "15px";
 myForm.style.display = "none";
 myForm.id = "my_form";
 myForm.submit();
@@ -103,10 +106,12 @@ printMyForm.appendChild(myForm);
 document.getElementById("my_form").addEventListener("submit", function(event) {
     event.preventDefault();
     var newLink = createLinkElement(linkList[0]);
-    printNewLink.appendChild(newLink);
+    printNewLink.insertAdjacentElement("afterBegin", newLink);
+    myForm.reset();
     myForm.style.display = "none";
     message.style.display = "inline";
     setTimeout(function(){message.style.display="none"}, 2000);
+    setTimeout(function(){addButton.style.display = "inline"}, 2000);
 });
 
 var message = document.createElement("h4");
