@@ -38,3 +38,19 @@ googleLink.appendChild(document.createTextNode('Google'));
 listElement.appendChild(googleLink);
 
 document.querySelector('ul').appendChild(listElement);
+
+
+var olElement = document.querySelector('ol');
+
+while (olElement.firstChild){
+	olElement.removeChild(olElement.firstChild);
+}
+
+
+var codingWebsites = ["Silent Teacher", "Code Monkey", "CodeCombat"];
+
+codingWebsites.forEach(function (liElement){
+	var codingWebsitesLi = document.createElement('li');
+	codingWebsitesLi.appendChild(document.createTextNode(liElement));
+	olElement.appendChild(codingWebsitesLi);
+});
