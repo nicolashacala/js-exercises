@@ -1,0 +1,42 @@
+#slots{
+	float: right;
+	width: 280px;
+	height: 50px;
+	border: 1px solid black;
+}
+
+.peg{
+	width: 40px;
+	height: 40px;
+	border: 1px solid black;
+	border-radius: 50%;
+	float: left;
+	margin: 2px;
+}
+
+#RD{
+	background-color: red;
+}
+#BU{
+	background-color: blue;
+}
+#YW{
+	background-color: yellow;
+}
+#GN{
+	background-color: green;
+}
+#OG{
+	background-color: orange;
+}
+#PP{
+	background-color: purple;
+}
+
+
+#player-answer{
+	width: 280px;
+	height: 50px;
+	border: 1px solid black;
+	
+}
