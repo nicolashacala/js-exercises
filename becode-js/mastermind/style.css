@@ -1,3 +1,9 @@
+body{
+	width: 100%;
+	height: 800px;
+	margin: 0;
+	padding: 0;
+}
 #slots{
 	float: right;
 	width: 280px;
@@ -33,10 +39,21 @@
 	background-color: purple;
 }
 
+#player-previous-answer{
+	width: 280px;
+	height: 500px;
+	border: 1px solid black;
+	margin: 200px auto;
+}
 
 #player-answer{
 	width: 280px;
 	height: 50px;
 	border: 1px solid black;
-	
+	margin: 200px auto;
+}
+
+#check-button{
+	display: block;
+	margin: 20px auto;
 }
