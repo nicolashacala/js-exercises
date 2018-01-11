@@ -9,6 +9,9 @@ var launchBall = false;
 var ballX = canonX;
 var ballY = canvas.height-canonHeight+10;
 var ballTraject = [];
+var targetX = Math.floor(Math.random()*451);
+var targetY = Math.floor(Math.random()* 201);
+var randomNumber = Math.floor(Math.random()*2);
 var targetAlex = new Image();
 targetAlex.src = '393415.jpeg';
 var targetEmily = new Image();
@@ -17,10 +20,6 @@ document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
 
-
-targetAlex.addEventListener('load',function(){
-
-})
 
 function mouseMoveHandler(e) {
     var relativeX = e.clientX - canvas.offsetLeft;
@@ -72,14 +71,30 @@ function drawBall() {
 }
 
 function drawTarget(){
+	if(randomNumber == 0){
+		ctx.drawImage(targetAlex, targetX, targetY);
+	}
+	else{
+		ctx.drawImage(targetEmily, targetX, targetY);
+	}
+}
 
+function collisionDetection(){
+		if(targetX < ballX+30 && targetX+60 > ballX+30 && targetY+60 == ballY+30){
+			targetX = Math.floor(Math.random()*451);
+			targetY = Math.floor(Math.random()* 201);
+			randomNumber = Math.floor(Math.random()*2);
+			drawTarget();
+		}
 }
 
 function draw(){
 	ctx.clearRect(0,0, canvas.width, canvas.height);
 	drawBall();
 	drawCanon();
-
+	collisionDetection();
+	drawTarget();
+	
 	if(rightPressed && canonX < canvas.width-canonWidth) {
 	    canonX += 10;
 	    ballX += 10;
